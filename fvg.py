@@ -44,8 +44,7 @@ with requests.Session() as s:
             }
             get_data['_csrf-app'] = soup.find('input', attrs={'name':'_csrf-app'})['value']
             m=s.post('https://www.fshare.vn/download/get', data= get_data,headers=headers)
-            k = m.json()['url']
             print('link download: ')
-            print(k)
+            print(m.json()['url'])
         except:
             print('Get link fail ! Try again...')
