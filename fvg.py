@@ -7,7 +7,7 @@ headers = {
 print('Login Fshare')
 mail = input('Enter your mail: ')
 psss = input('Enter your password: ')
-print('Please wait....')
+print('Loading page...')
 login_data = {
     'LoginForm[email]': mail,
     'LoginForm[password]': psss,
@@ -18,6 +18,7 @@ with requests.Session() as s:
     r = s.get(url, headers = headers)
     soup = BeautifulSoup(r.content, 'html.parser')
     login_data['_csrf-app'] = soup.find('input', attrs={'name':'_csrf-app'})['value']
+    print('Connecting account ...')
     r = s.post(url, data= login_data,headers=headers)
     soup = BeautifulSoup(r.content, 'html.parser')
     k=soup.title
